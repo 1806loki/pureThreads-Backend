@@ -3,14 +3,12 @@
     {
       "src": "index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "build/**",
+      "use": "@vercel/static"
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
-  "functions": {
-    "server.js": {
-      "runtime": "nodejs14.x",
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  }
+
+  "rewrites": [{ "source": "/(.*)", "destination": "index.js" }]
 }
