@@ -10,21 +10,21 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const JwtStrategy = require("passport-jwt").Strategy;
 const cookieParser = require("cookie-parser");
-const productsRouter = require("./src/routes/Products");
-const categoriesRouter = require("./src/routes/Categories");
-const brandsRouter = require("./src/routes/Brands");
-const usersRouter = require("./src/routes/Users");
-const authRouter = require("./src/routes/Auth");
-const cartRouter = require("./src/routes/Cart");
-const ordersRouter = require("./src/routes/Order");
-const { User } = require("./src/model/User");
+const productsRouter = require("./routes/Products");
+const categoriesRouter = require("./routes/Categories");
+const brandsRouter = require("./routes/Brands");
+const usersRouter = require("./routes/Users");
+const authRouter = require("./routes/Auth");
+const cartRouter = require("./routes/Cart");
+const ordersRouter = require("./routes/Order");
+const { User } = require("./model/User");
 const {
   isAuth,
   sanitizeUser,
   cookieExtractor,
-} = require("./src/services/common");
+} = require("./services/common");
 const path = require("path");
-const { Order } = require("./src/model/Order");
+const { Order } = require("./model/Order");
 
 const endpointSecret = process.env.ENDPOINT_SECRET;
 
