@@ -5,5 +5,12 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "/index.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
+  "functions": {
+    "server.js": {
+      "runtime": "nodejs14.x",
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  }
 }
