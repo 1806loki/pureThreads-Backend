@@ -3,13 +3,25 @@ const nodemailer = require("nodemailer");
 
 let transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // true for 465, false for other ports
+  port: 465,
+  secure: true,
   auth: {
-    user: "coderdost@gmail.com", // gmail
-    pass: process.env.MAIL_PASSWORD, // pass
+    user: "nikagodzoro@gmail.com",
+    pass: process.env.MAIL_PASSWORD,
   },
 });
+
+exports.sendMail = async function ({ to, subject, text, html }) {
+  let info = await transporter.sendMail({
+    from: '"PureThreads" <nikagodzoro@gmail.com>',
+    to,
+    subject,
+    text,
+    html,
+  });
+  console.log(info);
+  return info;
+};
 
 exports.isAuth = (req, res, done) => {
   return passport.authenticate("jwt");
@@ -25,17 +37,6 @@ exports.cookieExtractor = function (req) {
     token = req.cookies["jwt"];
   }
   return token;
-};
-
-exports.sendMail = async function ({ to, subject, text, html }) {
-  let info = await transporter.sendMail({
-    from: '"E-commerce" <coderdost@gmail.com>', // sender address
-    to,
-    subject,
-    text,
-    html,
-  });
-  return info;
 };
 
 exports.invoiceTemplate = function (order) {
@@ -166,7 +167,7 @@ exports.invoiceTemplate = function (order) {
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
               <a href="https://sendgrid.com" target="_blank" style="display: inline-block;">
-                <img src="./img/paste-logo-light@2x.png" alt="Logo" border="0" width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
+                <img src="https://scontent.fhyd10-1.fna.fbcdn.net/v/t39.30808-6/302744412_403885845208229_2746363699438219783_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=fRg5dQvDDr4AX9neOrP&_nc_ht=scontent.fhyd10-1.fna&oh=00_AfCrgL9yr-uTBprs_tTmasTydGl4vmk86aA1hKcTxj23hw&oe=65EA882A" alt="Logo" border="0" width="48" style="display: block; width: 60px; max-width: 80px; min-width: 60px;">
               </a>
             </td>
           </tr>
@@ -262,7 +263,7 @@ exports.invoiceTemplate = function (order) {
               </table>
             </td>
           </tr>
-          <!-- end reeipt table -->
+          <!-- end receipt table -->
 
         </table>
         <!--[if (gte mso 9)|(IE)]>
